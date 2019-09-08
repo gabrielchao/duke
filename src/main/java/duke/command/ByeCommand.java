@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.io.UiOutput;
 import duke.task.TaskList;
 
+/**
+ * When executed, outputs a goodbye message and signals the app to exit.
+ */
 public class ByeCommand extends Command {
     public ByeCommand(String[] args) {
         super(args);

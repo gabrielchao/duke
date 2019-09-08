@@ -9,6 +9,9 @@ import duke.task.TaskList;
 
 import java.util.Map;
 
+/**
+ * When executed, adds a new deadline to the <code>TaskList</code>.
+ */
 public class DeadlineCommand extends Command {
     public DeadlineCommand(String[] args) {
         super(args);

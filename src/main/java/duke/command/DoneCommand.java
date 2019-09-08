@@ -7,6 +7,9 @@ import duke.task.TaskList;
 
 import java.util.Map;
 
+/**
+ * When executed, marks a specified task as done.
+ */
 public class DoneCommand extends Command {
     public DoneCommand(String[] args) {
         super(args);

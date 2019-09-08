@@ -8,6 +8,9 @@ import duke.task.TaskList;
 
 import java.util.Map;
 
+/**
+ * When executed, removes the specified task.
+ */
 public class DeleteCommand extends Command {
     public DeleteCommand(String[] args) {
         super(args);

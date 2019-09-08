@@ -8,6 +8,9 @@ import duke.task.TaskList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Finds tasks that contain a given keyword.
+ */
 public class FindCommand extends Command {
     public FindCommand(String[] args) {
         super(args);
@@ -32,9 +35,9 @@ public class FindCommand extends Command {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < foundTaskIndices.size(); i++) {
                 int oneIndex = foundTaskIndices.get(i);
-                sb.append(oneIndex);
-                sb.append(". ");
-                sb.append(tasks.get(oneIndex).toString());
+                sb.append(oneIndex)
+                        .append(". ")
+                        .append(tasks.get(oneIndex).toString());
                 if (i != foundTaskIndices.size() - 1) {
                     sb.append("\n");
                 }

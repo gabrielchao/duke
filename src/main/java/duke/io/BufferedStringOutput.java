@@ -1,5 +1,10 @@
 package duke.io;
 
+/**
+ * A variable-length buffer for UI output strings.
+ *
+ * <p>Instances of <code>BufferedStringOutput</code> are not safe for use by multiple threads.
+ */
 public class BufferedStringOutput implements UiOutput {
     public static final String OOPS_PREFIX = "\u2639 OOPS!!! "; // ☹
 
@@ -13,6 +18,12 @@ public class BufferedStringOutput implements UiOutput {
         sb.append(OOPS_PREFIX).append(text).append('\n');
     }
 
+    /**
+     * Returns a concatenated string consisting of all strings written to this <code>BufferedStringOutput</code>
+     * since the previous call to <code>nextResponse</code>. Each output string is separated by a newline.
+     *
+     * @return  string concatenated from all strings in this buffer
+     */
     public String nextResponse() {
         String response = sb.toString();
         sb = new StringBuilder();

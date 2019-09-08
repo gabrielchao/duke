@@ -2,10 +2,13 @@ package duke.task;
 
 import duke.util.DukeDate;
 
+/**
+ * Deadline task consisting of a description and a deadline.
+ */
 public class Deadline extends Task {
     /**
      * The deadline this task must be completed by.
-     * It is a String to allow the user to custom dates such as 'the day after tomorrow'
+     * DukeDate allows the user to input custom date strings such as 'the day after tomorrow'
      */
     protected DukeDate date;
 

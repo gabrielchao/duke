@@ -9,6 +9,9 @@ import duke.task.TaskList;
 
 import java.util.Map;
 
+/**
+ * When executed, adds a new todo to the <code>TaskList</code>.
+ */
 public class TodoCommand extends Command {
     public TodoCommand(String[] args) {
         super(args);

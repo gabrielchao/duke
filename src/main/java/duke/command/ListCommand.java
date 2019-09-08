@@ -4,6 +4,9 @@ import duke.Storage;
 import duke.io.UiOutput;
 import duke.task.TaskList;
 
+/**
+ * When executed, lists tasks.
+ */
 public class ListCommand extends Command {
     public ListCommand(String[] args) {
         super(args);

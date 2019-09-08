@@ -11,6 +11,9 @@ import java.time.format.FormatStyle;
 import java.time.temporal.ChronoField;
 import java.util.List;
 
+/**
+ * Utility class with various date and datetime parsing methods.
+ */
 public class DateParser {
     private static List<DateTimeFormatter> dateFormatters = List.of(
             DateTimeFormatter.ISO_DATE,

@@ -9,6 +9,9 @@ import duke.task.TaskList;
 
 import java.util.Map;
 
+/**
+ * When executed, adds a new event to the <code>TaskList</code>.
+ */
 public class EventCommand extends Command {
 
     public EventCommand(String[] args) {

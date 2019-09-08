@@ -56,7 +56,7 @@ public class DukeDate {
      * as a {@link LocalDate}. If that fails, it tries to parse it as a {@link LocalDateTime}. If the string
      * cannot be parsed, it is stored as a raw string.
      *
-     * @param text the date string to represent
+     * @param text  the date string to represent
      * @return  DukeDate representing the specified date string
      */
     public static DukeDate parse(String text) {
