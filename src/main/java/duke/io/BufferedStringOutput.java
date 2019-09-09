@@ -22,6 +22,8 @@ public class BufferedStringOutput implements UiOutput {
      * Returns a concatenated string consisting of all strings written to this <code>BufferedStringOutput</code>
      * since the previous call to <code>nextResponse</code>. Each output string is separated by a newline.
      *
+     * <p>The buffer is cleared after this method is called.
+     *
      * @return  string concatenated from all strings in this buffer
      */
     public String nextResponse() {

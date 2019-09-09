@@ -8,7 +8,7 @@ import duke.util.PreParser;
 import java.io.IOException;
 
 /**
- * Main application class.
+ * Main logic class.
  */
 public class Duke {
     public final String DEFAULT_FILEPATH = "./data/tasks.txt";
@@ -20,21 +20,26 @@ public class Duke {
     private PreParser preParser;
     private TaskList tasks;
     private Storage storage;
-    private BufferedStringOutput bufferedStringOutput;
-    private boolean wasLoadingError = false;
+    private BufferedStringOutput bufferedUiOutput = new BufferedStringOutput();
+    private BufferedStringOutput startupMessages = new BufferedStringOutput();
 
     /**
      * Constructs a Duke object with the data file residing in the default path.
      */
     public Duke() {
-        preParser = new PreParser();
+        try {
+            preParser = new PreParser();
+        } catch (DukeException e) {
+            e.printStackTrace();
+            startupMessages.oops("I couldn't understand my list of commands! "
+                    + "I won't be very helpful this session :(");
+        }
         storage = new Storage(DEFAULT_FILEPATH);
-        bufferedStringOutput = new BufferedStringOutput();
         try {
             tasks = storage.load();
         } catch (IOException | ClassNotFoundException e) {
-            wasLoadingError = true;
             tasks = new TaskList();
+            startupMessages.oops("Couldn't load tasks from disk!");
         }
     }
 
@@ -44,17 +49,17 @@ public class Duke {
     public String getResponse(String input) {
         try {
             Command command = preParser.parse(input);
-            command.execute(tasks, bufferedStringOutput, storage);
+            command.execute(tasks, bufferedUiOutput, storage);
         } catch (DukeException e) {
-            bufferedStringOutput.oops(e.getMessage());
+            bufferedUiOutput.oops(e.getMessage());
         }
 
         try {
             storage.save(tasks);
         } catch (IOException e) {
-
+            // Unable to save
         }
 
-        return bufferedStringOutput.nextResponse();
+        return bufferedUiOutput.nextResponse();
     }
 }

@@ -12,27 +12,32 @@ import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.TodoCommand;
 
+import java.util.List;
+
 /**
  * Parser that converts Strings into {@link Command} objects using a {@link CommandMap}
  * as a String-{@link Class} map.
  */
 public class PreParser {
     private CommandMap commandMap;
+    private List<Class<? extends Command>> defaultCommands = List.of(
+            ByeCommand.class,
+            ListCommand.class,
+            DoneCommand.class,
+            TodoCommand.class,
+            DeadlineCommand.class,
+            EventCommand.class,
+            DeleteCommand.class,
+            FindCommand.class
+    );
 
     /**
      * Constructs a PreParser using the default {@link CommandMap} mapping.
+     *
+     * @throws DukeException  if the CommandMap cannot be constructed using the default mapping
      */
-    public PreParser() {
-        String[] dummyArgs = new String[0];
-        commandMap = new CommandMap();
-        commandMap.register(new ByeCommand(dummyArgs));
-        commandMap.register(new ListCommand(dummyArgs));
-        commandMap.register(new DoneCommand(dummyArgs));
-        commandMap.register(new TodoCommand(dummyArgs));
-        commandMap.register(new DeadlineCommand(dummyArgs));
-        commandMap.register(new EventCommand(dummyArgs));
-        commandMap.register(new DeleteCommand(dummyArgs));
-        commandMap.register(new FindCommand(dummyArgs));
+    public PreParser() throws DukeException {
+        commandMap = new CommandMap(defaultCommands);
     }
 
     /**
@@ -47,11 +52,11 @@ public class PreParser {
     /**
      * Returns a {@link Command} object parsed from the specified String. The Command contains all arguments specified
      * in the String, ignoring extraneous spaces.
-     * <p>
-     * Specifically, the Command arguments are parsed into a String[] by calling {@link String#split} on the input with
-     * <code>" "</code> as the delimiter.
      *
-     * @param fullCommand
+     * <p>Specifically, the Command arguments are parsed into a String[] by calling {@link String#split} on the input
+     * with <code>" "</code> as the delimiter.
+     *
+     * @param fullCommand     string to parse
      * @return                the parsed Command
      * @throws DukeException  if the command name is not a key in the CommandMap
      */
